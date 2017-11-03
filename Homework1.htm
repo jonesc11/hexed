@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+	body {
+		font-family: verdana;
+		background-color: #000;
+		}
+		
+	h1 {
+		color: #112;
+		text-align: center;
+		text-transform: uppercase;
+		text-shadow: 1px 1px #000, -1px -1px #CCC;
+		font-size: 400%;
+		}
+		
+	label, input {
+		display: block;
+		width: 400px;
+		color: #FF0;
+		}
+		
+	h2 {
+		background-color: #000;
+		color: #CCC;
+		text-align: center;
+		text-transform: uppercase;
+		}
+	
+	</style>
+	<script>
+        function changeSquare() {
+
+        // make variables to get the values from the sliders
+        var rd = parseInt(document.getElementById('red').value);
+        var gn = parseInt(document.getElementById('green').value);
+        var bl = parseInt(document.getElementById('blue').value);
+
+        // convert the decimal values into hexadecimal
+        var rdhex = (rd < 16) ? "0" + rd.toString(16) : rd.toString(16);
+        var gnhex = (gn < 16) ? "0" + gn.toString(16) : gn.toString(16);
+        var blhex = (bl < 16) ? "0" + bl.toString(16) : bl.toString(16);
+
+        // create a variable that concatenates all the parts
+        var hexcode = "#" + rdhex + gnhex + blhex;
+
+        // change the background color
+        document.getElementById('hexdisplay').innerHTML = hexcode;
+        var canvas = document.getElementById('user_hex');
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = hexcode;
+        ctx.fillRect(0,0,80,80);
+
+        }
+    </script>
+	
+<style type="text/css">@font-face { font-family: "Roboto Condensed"; src: url("https://fonts.googleapis.com/css family=Roboto+Condensed:300,300i,400,400i,700,700i"); }</style>
+
+</head>
+
+<body data-gr-c-s-loaded="true" style="background-color: rgb(102, 153, 189);">
+
+
+<h1>Hexed</h1>
+<h2 id="hexdisplay">#6699bd</h2>
+
+<canvas id = "user_hex"></canvas>
+
+<label for="red">RED</label>
+<input type="range" min="0" max="255" step="1" value="0" id="red" name="red" onchange="changeSquare()">
+	   
+<label for="green">GREEN</label>
+<input type="range" min="0" max="255" step="1" value="0" id="green" name="green" onchange="changeSquare()">
+	   
+<label for="blue">BLUE</label>
+<input type="range" min="0" max="255" step="1" value="0" id="blue" name="blue" onchange="changeSquare()">
+
+ 
+</body>
+</html>
