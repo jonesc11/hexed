@@ -248,6 +248,8 @@ jq(document).ready(function() {
     jq(submitBtn).on("click", function() {
       var stopTime = new Date().getTime();
       
+      document.getElementById("error").innerHTML = "Error red: " + percent_off(randR,guessR).toFixed(2) + "%<br/>Error green: " + percent_off(randG,guessG).toFixed(2) + "%<br/>Error blue: " + percent_off(randB,guessB).toFixed(2) + "%";
+      
       var roundScore = calculate_score(total_percent_off(percent_off(randR,guessR), percent_off(randG,guessG), percent_off(randB,guessB)), settings['difficulty'], stopTime - startTime);
       
       startTime = stopTime;
@@ -271,6 +273,11 @@ jq(document).ready(function() {
         jq(game).append(getDone(currentScore));
       }
     });
+    
+    var error = document.createElement("P");
+    error.innerHTML = "Error red: N/A<br/>Error green: N/A<br/>Error blue: N/A";
+    error.id = "error";
+    jq(game).append(error);
     
     jq(game).append(submitBtn);
     
