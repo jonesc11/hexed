@@ -23,17 +23,18 @@ label, input {
   color: #FF0;
 }
 
-#container{
+.container{
 	background: rgb(255,255,255); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 53%, rgba(225,225,225,1) 54%, rgba(246,246,246,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 53%,rgba(225,225,225,1) 54%,rgba(246,246,246,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 53%,rgba(225,225,225,1) 54%,rgba(246,246,246,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 53%, rgba(225,225,225,1) 56%, rgba(246,246,246,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 53%,rgba(225,225,225,1) 56%,rgba(246,246,246,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 53%,rgba(225,225,225,1) 56%,rgba(246,246,246,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	width: 80%;
-    margin: auto;
 	height: 100%;
 	text-align: center;
 	border: 2px dashed #1b1a19; 
+    border-radius: .8em;
     padding: 10px;
+    margin-top: 20px;
 }
 
 body{
@@ -52,10 +53,57 @@ body{
 	padding-top: 1%;
 }
 #rounds {
-    width: 75px;
+    width: 46px;
+    height: 26px;
+    margin: auto;
     color: #000;
     text-align: center;
 }
-html {
-    min-height: 100%
+
+#difficulty {
+  text-align: center;
 }
+
+html {
+    min-height: 100%;
+}
+
+.square {
+  display: inline-block;
+  margin: 10px;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.slider-input {
+  width: 30px;
+  display: inline-block;
+  color: black;
+  text-align: center;
+}
+
+.slider {
+  margin-top: 10px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.slider-container {
+  height: 30px;
+}
+
+#sliders-container {
+  margin-bottom: 20px;
+}
+
+#error {
+  margin-top: 10px;
+}
+
+#red-slider .ui-slider-range { background: #ef2929; }
+#red-slider .ui-slider-handle { border-color: #ef2929; }
+#green-slider .ui-slider-range { background: #8ae234; }
+#green-slider .ui-slider-handle { border-color: #8ae234; }
+#blue-slider .ui-slider-range { background: #729fcf; }
+#blue-slider .ui-slider-handle { border-color: #729fcf; }
