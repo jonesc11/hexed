@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*Gradient colors obtained from http://www.colorzilla.com/gradient-editor */
 
 .container{
@@ -30,4 +31,66 @@ body{
 }
 html {
     min-height: 100%
+=======
+@font-face { 
+  font-family: "Roboto Condensed"; 
+  src: url("https://fonts.googleapis.com/css family=Roboto+Condensed:300,300i,400,400i,700,700i");
+}
+
+h1 {
+  color: #112;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 1px 1px #000, -1px -1px #CCC;
+  font-size: 400%;
+  margin-top: 10px;
+}
+
+h3 {
+  margin-top: 10px;
+}
+
+
+label, input {
+  display: block;
+  width: 400px;
+  color: #FF0;
+}
+
+#container{
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 53%, rgba(225,225,225,1) 54%, rgba(246,246,246,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 53%,rgba(225,225,225,1) 54%,rgba(246,246,246,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 53%,rgba(225,225,225,1) 54%,rgba(246,246,246,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	width: 80%;
+    margin: auto;
+	height: 100%;
+	text-align: center;
+	border: 2px dashed #1b1a19; 
+    padding: 10px;
+}
+
+body{
+	font-family: Helvetica, Arial, Sans-Serif;
+	background: rgb(239,197,202); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(239,197,202,1) 0%, rgba(210,75,90,1) 50%, rgba(186,39,55,1) 51%, rgba(241,142,153,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(239,197,202,1) 0%,rgba(210,75,90,1) 50%,rgba(186,39,55,1) 51%,rgba(241,142,153,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(239,197,202,1) 0%,rgba(210,75,90,1) 50%,rgba(186,39,55,1) 51%,rgba(241,142,153,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ 	
+	background-repeat: no-repeat;
+}
+#gameparams{
+	font-size: 20px; 
+    float:left;
+}
+#start{
+	padding-top: 1%;
+}
+#rounds {
+    width: 75px;
+    color: #000;
+    text-align: center;
+}
+html {
+    min-height: 100%
+>>>>>>> c0c4e488c8223cae6bfc9bb4439efc548a0132b3
 }
