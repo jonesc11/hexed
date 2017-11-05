@@ -123,14 +123,12 @@ jq(document).ready(function() {
     
     var randSqDiv = document.createElement("DIV");
     randSqDiv.id = "rand-square";
-    var randSq = createSquare(randR,randG,randB);
-    randSqDiv.appendChild(randSq);
+    jq(randSqDiv).css("height", "150px");
+    jq(randSqDiv).css("width", "150px");
+    createSquare(randSqDiv,randR,randG,randB);
     jq(game).append(randSqDiv);
     
     //- Create guess square
-    var guessR = 127;
-    var guessG = 127;
-    var guessB = 127;
     
     var guessSqDiv = document.createElement("DIV");
     guessSqDiv.id = "guess-square";
@@ -159,8 +157,8 @@ jq(document).ready(function() {
             blue = jq("#blue-slider").slider("value"),
             hex = hexFromRGB(red,green,blue);
         jq("#red-input").val(red.toString(16));
-        jq("#green-input").val(red.toString(16));
-        jq("#blue-input").val(red.toString(16));
+        jq("#green-input").val(green.toString(16));
+        jq("#blue-input").val(blue.toString(16));
         jq("#guess-square").css("background-color", "#" + hex);
       }
       
@@ -219,6 +217,10 @@ jq(document).ready(function() {
     jq(submitBtn).on("click", function() {
       var stopTime = new Date().getTime();
       
+      var guessR = jq("#red-slider").slider("value");
+      var guessG = jq("#green-slider").slider("value");
+      var guessB = jq("#blue-slider").slider("value");
+      
       document.getElementById("error").innerHTML = "Error red: " + percent_off(randR,guessR).toFixed(2) + "%<br/>Error green: " + percent_off(randG,guessG).toFixed(2) + "%<br/>Error blue: " + percent_off(randB,guessB).toFixed(2) + "%";
       
       var roundScore = calculate_score(total_percent_off(percent_off(randR,guessR), percent_off(randG,guessG), percent_off(randB,guessB)), settings['difficulty'], stopTime - startTime);
@@ -236,8 +238,7 @@ jq(document).ready(function() {
       randG = Math.floor(Math.random() * 255);
       randB = Math.floor(Math.random() * 255);
       
-      jq("#rand-square").empty();
-      document.getElementById("rand-square").appendChild(createSquare(randR,randG,randB));
+      createSquare(document.getElementById("rand-square"), randR,randG,randB);
       
       if (turnsRemaining == 0) {
         jq(game).empty();
@@ -303,15 +304,24 @@ function calculate_score(total_percent_off, difficulty, time_taken) {
   return new_score;
 }
 
+function hexFromRGB(r, g, b) {
+  var hex = [
+    r.toString(16),
+    g.toString(16),
+    b.toString(16)
+  ];
+  jq.each(hex, function(nr,val) {
+    if (val.length === 1) {
+      hex[nr] = "0" + val;
+    }
+  });
+  return hex.join("").toUpperCase();
+}
+
 //- Generates a square with given RGB values
-function createSquare(r, g, b) {
-  var canvas = document.createElement("CANVAS");
-  jq(canvas).css("width", "150px");
-  jq(canvas).css("height", "150px");
-  var ctx = canvas.getContext("2d");
-  ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
-  ctx.fillRect(0,0,300,150);
-  return canvas;
+function createSquare(ele, r, g, b) {
+  var hex = hexFromRGB(r, g, b);
+  jq(ele).css("background-color", "#" + hex);
 }
 
 //- Gets the "all done!" stuff, final score, etc
