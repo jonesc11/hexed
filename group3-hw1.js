@@ -1,7 +1,11 @@
 
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
+
+
     alert("Welcome to Hexxed");
+
+    //Create instructions
 	var div= document.getElementById("instr");
 	var button = document.createElement("BUTTON");
 	var t = document.createTextNode("Show/Hide Instructions\n");
@@ -14,6 +18,7 @@ jq(document).ready(function() {
     	jq("#instructions").toggle();
     });
 
+    // Add the paramaters to the game so that they can be selected
     var div= document.getElementById("gameparams");
 	var difform = document.createElement("form");
 	difform.appendChild(document.createTextNode("Difficulty: "));
@@ -28,6 +33,7 @@ jq(document).ready(function() {
 	difform.appendChild(difsel);
 	div.appendChild(difform);
 
+	//input parameter for  	rounds since anything >0 is valid
 	var rform = document.createElement("form");
 	rform.appendChild(document.createTextNode("Rounds: "));
 	var rinput = document.createElement("INPUT");
@@ -43,7 +49,7 @@ jq(document).ready(function() {
 	rform.appendChild(rbutton);
 	div.appendChild(rform);
 
-
+	// add a button to start the game
 	divcol = document.createElement("DIV");
     divcol.setAttribute("class", "col-sm-12");
 	div = document.getElementById("start");
