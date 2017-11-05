@@ -62,12 +62,11 @@ jq(document).ready(function() {
          rounds: document.getElementById("rounds").value
        };
       
-      //- Error Checking
+      //- Error Checking before game is initialized
       if (settings['difficulty'] > 10 || settings['difficulty'] < 1) {
         var p = document.createElement("H3");
         p.innerHTML = "Difficulty must be between 1 and 10 (inclusive)";
         div.appendChild(p);
-        //this.append(game);
         return;
       }
 
@@ -75,7 +74,6 @@ jq(document).ready(function() {
         var p = document.createElement("H3");
         p.innerHTML = "Rounds must be a positive number.";
         div.appendChild(p);
-        //this.append(game);
         return;
       }
       
@@ -90,6 +88,23 @@ jq(document).ready(function() {
     
     var game = document.createElement("DIV");
     var startTime = new Date().getTime();
+    
+    //- Second Error Checking within the plug-in itself
+    if (settings['difficulty'] > 10 || settings['difficulty'] < 1) {
+      var p = document.createElement("H3");
+      p.innerHTML = "Difficulty must be between 1 and 10 (inclusive)";
+      jq(game).append(p);
+      this.append(game);
+      return;
+    }
+
+    if (isNaN(settings['rounds']) || settings['rounds'] < 1) {
+      var p = document.createElement("H3");
+      p.innerHTML = "Rounds must be a positive number.";
+      jq(game).append(p);
+      this.append(game);
+      return;
+    }
     
     var turnsRemaining = parseInt(settings['rounds']);
     var currentScore = 0;
