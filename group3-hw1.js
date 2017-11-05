@@ -174,6 +174,10 @@ jq(document).ready(function() {
       redInput.className = "slider-input";
       jq(red_container).append(redInput);
       
+      redInput.oninput = function() {
+        jq("#red-slider").slider("value", parseInt(jq("#red-input").val(), 16));
+      };
+      
       var green_container = document.createElement("DIV");
       green_container.id = "green-container";
       green_container.className = "slider-container";
@@ -190,6 +194,10 @@ jq(document).ready(function() {
       greenInput.className = "slider-input";
       jq(green_container).append(greenInput);
       
+      greenInput.oninput = function() {
+        jq("#green-slider").slider("value", parseInt(jq("#green-input").val(), 16));
+      };
+      
       var blue_container = document.createElement("DIV");
       blue_container.id = "blue-container";
       blue_container.className = "slider-container";
@@ -205,6 +213,10 @@ jq(document).ready(function() {
       blueInput.id = "blue-input";
       blueInput.className = "slider-input";
       jq(blue_container).append(blueInput);
+      
+      blueInput.oninput = function() {
+        jq("#blue-slider").slider("value", parseInt(jq("#blue-input").val(), 16));
+      };
       
       jq("#red-slider, #green-slider, #blue-slider").slider({
         orientation: "horizontal",
@@ -252,14 +264,6 @@ jq(document).ready(function() {
       document.getElementById("tot-score").innerHTML = "Your score: " + currentScore.toFixed(2);
       
       turnsRemaining--;
-      
-//      document.getElementById("turns-counter").innerHTML = "You have " + turnsRemaining + " of " + settings['rounds'] + " turns remaining.";
-//      
-//      randR = Math.floor(Math.random() * 255);
-//      randG = Math.floor(Math.random() * 255);
-//      randB = Math.floor(Math.random() * 255);
-//      
-//      createSquare(document.getElementById("rand-square"), randR,randG,randB);
       
       if (turnsRemaining == 0) {
         jq(game).empty();
