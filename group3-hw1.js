@@ -134,109 +134,80 @@ jq(document).ready(function() {
     
     var guessSqDiv = document.createElement("DIV");
     guessSqDiv.id = "guess-square";
-    var guessSquare = createSquare(guessR,guessG,guessB);
-    guessSqDiv.appendChild(guessSquare);
+    jq(guessSqDiv).css("width", "150px");
+    jq(guessSqDiv).css("height", "150px");
     jq(game).append(guessSqDiv);
     
-    //- Create sliders & values
-    var slideR = document.createElement("INPUT");
-    slideR.setAttribute("type", "range");
-    slideR.setAttribute("min", "0");
-    slideR.setAttribute("max", "255");
-    slideR.value = 127;
-    slideR.setAttribute("class", "slider");
-    slideR.id = "slider-red";
-    
-    var inputR = document.createElement("INPUT");
-    inputR.setAttribute("type", "text");
-    inputR.value = 127;
-    inputR.setAttribute("class", "form-control");
-    inputR.id = "input-red";
-    
-    slideR.oninput = function() {
-      guessR = slideR.value;
-      inputR.value = guessR;
+    jq(function() {
+      function hexFromRGB(r, g, b) {
+        var hex = [
+          r.toString(16),
+          g.toString(16),
+          b.toString(16)
+        ];
+        jq.each(hex, function(nr,val) {
+          if (val.length === 1) {
+            hex[nr] = "0" + val;
+          }
+        });
+        return hex.join("").toUpperCase();
+      }
       
-      jq("#guess-square").empty();
-      jq("#guess-square").append(createSquare(guessR,guessG,guessB));
-    }
-    
-    inputR.oninput = function() {
-      guessR = inputR.value;
-      slideR.value = guessR;
+      function refreshSwatch() {
+        var red = jq("#red-slider").slider("value"),
+            green = jq("#green-slider").slider("value"),
+            blue = jq("#blue-slider").slider("value"),
+            hex = hexFromRGB(red,green,blue);
+        jq("#red-input").val(red.toString(16));
+        jq("#green-input").val(red.toString(16));
+        jq("#blue-input").val(red.toString(16));
+        jq("#guess-square").css("background-color", "#" + hex);
+      }
       
-      jq("#guess-square").empty();
-      jq("#guess-square").append(createSquare(guessR,guessG,guessB));
-    }
-    
-    jq(game).append(slideR);
-    jq(game).append(inputR);
-    
-    var slideG = document.createElement("INPUT");
-    slideG.setAttribute("type", "range");
-    slideG.setAttribute("min", "0");
-    slideG.setAttribute("max", "255");
-    slideG.value = 127;
-    slideG.setAttribute("class", "slider");
-    slideG.id = "slider-green";
-    
-    var inputG = document.createElement("INPUT");
-    inputG.setAttribute("type", "text");
-    inputG.value = 127;
-    inputG.setAttribute("class", "form-control");
-    inputG.id = "input-green";
-    
-    slideG.oninput = function() {
-      guessG = slideG.value;
-      inputG.value = guessG;
+      var red = document.createElement("DIV");
+      red.id = "red-slider";
+      jq(red).css("width", "300px");
+      jq(game).append(red);
       
-      jq("#guess-square").empty();
-      jq("#guess-square").append(createSquare(guessR,guessG,guessB));
-    }
-    
-    inputG.oninput = function() {
-      guessG = inputG.value;
-      slideG.value = guessG;
+      var redInput = document.createElement("INPUT");
+      redInput.setAttribute("type", "text");
+      redInput.id = "red-input";
+      jq(redInput).css("width", "300px");
+      jq(game).append(redInput);
       
-      jq("#guess-square").empty();
-      jq("#guess-square").append(createSquare(guessR,guessG,guessB));
-    }
-    
-    jq(game).append(slideG);
-    jq(game).append(inputG);
-    
-    var slideB = document.createElement("INPUT");
-    slideB.setAttribute("type", "range");
-    slideB.setAttribute("min", "0");
-    slideB.setAttribute("max", "255");
-    slideB.value = 127;
-    slideB.setAttribute("class", "slider");
-    slideB.id = "slider-blue";
-    
-    var inputB = document.createElement("INPUT");
-    inputB.setAttribute("type", "text");
-    inputB.value = 127;
-    inputB.setAttribute("class", "form-control");
-    inputB.id = "input-blue";
-    
-    slideB.oninput = function() {
-      guessB = slideB.value;
-      inputB.value = guessB;
+      var green = document.createElement("DIV");
+      green.id = "green-slider";
+      jq(green).css("width", "300px");
+      jq(game).append(green);
       
-      jq("#guess-square").empty();
-      jq("#guess-square").append(createSquare(guessR,guessG,guessB));
-    }
-    
-    inputB.oninput = function() {
-      guessB = inputB.value;
-      slideB.value = guessB;
+      var greenInput = document.createElement("INPUT");
+      greenInput.setAttribute("type", "text");
+      greenInput.id = "green-input";
+      jq(greenInput).css("width", "300px");
+      jq(game).append(greenInput);
       
-      jq("#guess-square").empty();
-      jq("#guess-square").append(createSquare(guessR,guessG,guessB));
-    }
-    
-    jq(game).append(slideB);
-    jq(game).append(inputB);
+      var blue = document.createElement("DIV");
+      blue.id = "blue-slider";
+      jq(blue).css("width", "300px");
+      jq(game).append(blue);
+      
+      var blueInput = document.createElement("INPUT");
+      blueInput.setAttribute("type", "text");
+      blueInput.id = "blue-input";
+      jq(blueInput).css("width", "300px");
+      jq(game).append(blueInput);
+      
+      jq("#red-slider, #green-slider, #blue-slider").slider({
+        orientation: "horizontal",
+        range: "min",
+        max: 255,
+        value: 127,
+        slide: refreshSwatch,
+        change: refreshSwatch
+      });
+      
+      refreshSwatch();
+    });
     
     //- Create submit button
     var submitBtn = document.createElement("INPUT");
