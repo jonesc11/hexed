@@ -129,7 +129,6 @@ jq(document).ready(function() {
     jq(game).append(randSqDiv);
     
     //- Create guess square
-    
     var guessSqDiv = document.createElement("DIV");
     guessSqDiv.id = "guess-square";
     jq(guessSqDiv).css("width", "150px");
