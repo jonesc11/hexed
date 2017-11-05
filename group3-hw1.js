@@ -61,6 +61,24 @@ jq(document).ready(function() {
          difficulty: document.getElementById("difficulty").value,
          rounds: document.getElementById("rounds").value
        };
+      
+      //- Error Checking
+      if (settings['difficulty'] > 10 || settings['difficulty'] < 1) {
+        var p = document.createElement("H3");
+        p.innerHTML = "Difficulty must be between 1 and 10 (inclusive)";
+        div.appendChild(p);
+        //this.append(game);
+        return;
+      }
+
+      if (isNaN(settings['rounds']) || settings['rounds'] < 1) {
+        var p = document.createElement("H3");
+        p.innerHTML = "Rounds must be a positive number.";
+        div.appendChild(p);
+        //this.append(game);
+        return;
+      }
+      
       jq("#game").addClass("container");
       jq("#game").hexed(settings);
     });
@@ -72,23 +90,6 @@ jq(document).ready(function() {
     
     var game = document.createElement("DIV");
     var startTime = new Date().getTime();
-    
-    //- Error Checking
-    if (settings['difficulty'] > 10 || settings['difficulty'] < 1) {
-      var p = document.createElement("H3");
-      p.innerHTML = "Difficulty must be between 1 and 10 (inclusive)";
-      jq(game).append(p);
-      this.append(game);
-      return;
-    }
-    
-    if (isNaN(settings['rounds']) || settings['rounds'] < 1) {
-      var p = document.createElement("H3");
-      p.innerHTML = "Rounds must be a positive number.";
-      jq(game).append(p);
-      this.append(game);
-      return;
-    }
     
     var turnsRemaining = parseInt(settings['rounds']);
     var currentScore = 0;
@@ -174,9 +175,13 @@ jq(document).ready(function() {
       redInput.className = "slider-input";
       jq(red_container).append(redInput);
       
-      redInput.oninput = function() {
-        jq("#red-slider").slider("value", parseInt(jq("#red-input").val(), 16));
-      };
+      jq(redInput).on("change", function() {
+        var num = parseInt(jq("#red-input").val(), 16);
+        if(isNaN(num)) {
+          num = 0;
+        }
+        jq("#red-slider").slider("value", num);
+      });
       
       var green_container = document.createElement("DIV");
       green_container.id = "green-container";
@@ -194,9 +199,13 @@ jq(document).ready(function() {
       greenInput.className = "slider-input";
       jq(green_container).append(greenInput);
       
-      greenInput.oninput = function() {
-        jq("#green-slider").slider("value", parseInt(jq("#green-input").val(), 16));
-      };
+      jq(greenInput).on("change", function() {
+        var num = parseInt(jq("#green-input").val(), 16);
+        if(isNaN(num)) {
+          num = 0;
+        }
+        jq("#green-slider").slider("value", num);
+      });
       
       var blue_container = document.createElement("DIV");
       blue_container.id = "blue-container";
@@ -214,9 +223,13 @@ jq(document).ready(function() {
       blueInput.className = "slider-input";
       jq(blue_container).append(blueInput);
       
-      blueInput.oninput = function() {
-        jq("#blue-slider").slider("value", parseInt(jq("#blue-input").val(), 16));
-      };
+      jq(blueInput).on("change", function() {
+        var num = parseInt(jq("#blue-input").val(), 16);
+        if(isNaN(num)) {
+          num = 0;
+        }
+        jq("#blue-slider").slider("value", num);
+      });
       
       jq("#red-slider, #green-slider, #blue-slider").slider({
         orientation: "horizontal",
