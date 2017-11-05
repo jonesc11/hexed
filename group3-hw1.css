@@ -47,10 +47,14 @@ body{
 #gameparams{
 	font-size: 20px; 
     float:left;
-    padding-left: 40%;
 }
 #start{
 	padding-top: 1%;
+}
+#rounds {
+    width: 75px;
+    color: #000;
+    text-align: center;
 }
 html {
     min-height: 100%
