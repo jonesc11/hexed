@@ -349,7 +349,7 @@ jq(document).ready(function() {
 function  addinstr(){
   var element = document.createElement("P");
   element.setAttribute("id", "instructions")
-  text = document.createTextNode("This game is designed to help you learn css colors. Pick the number of rounds and games you would like to play.");
+  text = document.createTextNode("This game is designed to help you learn css colors. Pick the number of rounds and difficulty you would like to play.");
   element.appendChild(text);
   var div=  document.getElementById("instr");
   div.appendChild(element)
